@@ -22,6 +22,11 @@ def index():
     return render_template("index.html", title='Home', user=user, posts=posts)
 
 
+@app.before_request
+def before_request():
+    g.user = current_user
+
+
 @app.route('/login/', methods=['GET', 'POST'])
 @oid.loginhandler
 def login():
