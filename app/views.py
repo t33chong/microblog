@@ -2,7 +2,7 @@ from datetime import datetime
 from flask import render_template, flash, redirect, session, url_for, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from app import app, db, lm, oid
-from forms import LoginForm
+from forms import EditForm, LoginForm
 from models import User, ROLE_USER, ROLE_ADMIN
 
 
@@ -90,3 +90,20 @@ def user(nickname):
         {'author': user, 'body': 'Test post #2'}
         ]
     return render_template('user.html', user=user, posts=posts)
+
+
+@app.route('/edit/', methods=['GET', 'POST'])
+@login_required
+def edit():
+    form = EditForm()
+    if form.validate_on_submit():
+        g.user.nickname = form.nickname.data
+        g.user.about_me = form.about_me.data
+        db.session.add(g.user)
+        db.session.commit()
+        flash('Your changes have been saved.')
+        return redirect(url_for('edit'))
+    else:
+        form.nickname.data = g.user.nickname
+        form.about_me.data = g.user.about_me
+    return render_template('edit.html', form=form)
