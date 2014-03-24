@@ -5,3 +5,4 @@ config.py
 app.db
 db_repository/
 tmp/
+*.bak
