@@ -8,7 +8,7 @@ from config import basedir
 from config import ADMINS, MAIL_SERVER, MAIL_PORT, MAIL_USERNAME, MAIL_PASSWORD
 
 app = Flask(__name__)
-app.config.from_pyfile('config.py')
+app.config.from_object('config')
 
 db = SQLAlchemy(app)
 
