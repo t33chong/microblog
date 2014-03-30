@@ -2,7 +2,7 @@ venv/
 config.py
 *.swp
 *.pyc
-app.db
+*.db
 db_repository/
 tmp/
 *.bak
