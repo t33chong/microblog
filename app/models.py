@@ -7,8 +7,8 @@ ROLE_ADMIN = 1
 
 followers = db.Table(
     'followers',
-    db.Column('follower_id', db.Integer, db.ForeignKey('user_id')),
-    db.Column('followed_id', db.Integer, db.ForeignKey('user_id'))
+    db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
     )
 
 
