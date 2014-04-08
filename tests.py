@@ -60,7 +60,7 @@ class TestCase(unittest.TestCase):
         assert u is not None
         db.session.add(u)
         db.session.commit()
-        assert u1.is_following(u2) == False
+        assert not u1.is_following(u2)
         assert u1.followed.count() == 0
         assert u2.followers.count() == 0
 
