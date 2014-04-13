@@ -7,7 +7,7 @@ from models import User, Post, ROLE_USER, ROLE_ADMIN
 
 
 @app.route('/', methods=['GET', 'POST'])
-@app.route('/index/', methods=['GET', 'POST'[)
+@app.route('/index/', methods=['GET', 'POST'])
 @login_required
 def index():
     user = g.user
