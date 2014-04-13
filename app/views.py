@@ -10,7 +10,14 @@ from models import User, Post, ROLE_USER, ROLE_ADMIN
 @app.route('/index/', methods=['GET', 'POST'])
 @login_required
 def index():
-    user = g.user
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(
+            body=form.post.data, timestamp=datetime.utcnow(), author=g.user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post is now live!')
+        return redirect(url_for('index'))
     posts = [  # fake array of posts
         {
             'author': {'nickname': 'John'},
@@ -21,7 +28,7 @@ def index():
             'body': 'The Avengers movie was so cool!'
         }
     ]
-    return render_template("index.html", title='Home', user=user, posts=posts)
+    return render_template("index.html", title='Home', form=form, posts=posts)
 
 
 @app.before_request
