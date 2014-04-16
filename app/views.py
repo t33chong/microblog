@@ -17,6 +17,7 @@ def index():
         db.session.add(post)
         db.session.commit()
         flash('Your post is now live!')
+        # Redirect to avoid form resubmission upon browser refresh
         return redirect(url_for('index'))
     posts = [  # fake array of posts
         {
