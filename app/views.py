@@ -19,16 +19,7 @@ def index():
         flash('Your post is now live!')
         # Redirect to avoid form resubmission upon browser refresh
         return redirect(url_for('index'))
-    posts = [  # fake array of posts
-        {
-            'author': {'nickname': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'nickname': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
+    posts = g.user.followed_posts().all()
     return render_template('index.html', title='Home', form=form, posts=posts)
 
 
