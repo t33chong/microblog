@@ -2,14 +2,16 @@ from datetime import datetime
 from flask import render_template, flash, redirect, session, url_for, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from app import app, db, lm, oid
+from config import POSTS_PER_PAGE
 from forms import EditForm, LoginForm, PostForm
 from models import User, Post, ROLE_USER, ROLE_ADMIN
 
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index/', methods=['GET', 'POST'])
+@app.route('/index/<int:page>/', methods=['GET', 'POST'])
 @login_required
-def index():
+def index(page=1):
     form = PostForm()
     if form.validate_on_submit():
         post = Post(
@@ -19,7 +21,7 @@ def index():
         flash('Your post is now live!')
         # Redirect to avoid form resubmission upon browser refresh
         return redirect(url_for('index'))
-    posts = g.user.followed_posts().all()
+    posts = g.user.followed_posts().paginate(page, POSTS_PER_PAGE, False).items
     return render_template('index.html', title='Home', form=form, posts=posts)
 
 
