@@ -22,7 +22,8 @@
         </tr>
     </table>
 </form>
-{% for post in posts %}
+<!-- posts is a Paginate object -->
+{% for post in posts.items %}
 <p>
     {{post.author.nickname}} says: <b>{{post.body}}</b>
 </p>
