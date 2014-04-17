@@ -131,7 +131,7 @@ def follow(nickname):
     db.session.add(u)
     db.session.commit()
     flash('You are now following ' + nickname + '!')
-    follower_notification(url_for('user', nickname=nickname))
+    follower_notification(user, g.user)
     return redirect(url_for('user', nickname=nickname))
 
 
