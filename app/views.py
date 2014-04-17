@@ -158,6 +158,7 @@ def unfollow(nickname):
 def search():
     if not g.search_form.validate_on_submit():
         return redirect(url_for('index'))
+    # Redirect so that refresh doesn't resubmit form data
     return redirect(url_for('search_results', query=g.search_form.search.data))
 
 
