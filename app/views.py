@@ -2,7 +2,7 @@ from datetime import datetime
 from flask import render_template, flash, redirect, session, url_for, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from app import app, db, lm, oid
-from config import POSTS_PER_PAGE
+from config import POSTS_PER_PAGE, MAX_SEARCH_RESULTS
 from forms import EditForm, LoginForm, PostForm, SearchForm
 from models import User, Post, ROLE_USER, ROLE_ADMIN
 
@@ -160,6 +160,13 @@ def search():
         return redirect(url_for('index'))
     # Redirect so that refresh doesn't resubmit form data
     return redirect(url_for('search_results', query=g.search_form.search.data))
+
+
+@app.route('/search_results/<query>/')
+@login_required
+def search_results(query):
+    results = Post.query.whoosh_search(query, MAX_SEARCH_RESULTS).all()
+    return render_template('search_results.html', query=query, results=results)
 
 
 @app.errorhandler(404)
