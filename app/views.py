@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, session, url_for, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from app import app, db, lm, oid
 from config import POSTS_PER_PAGE
-from forms import EditForm, LoginForm, PostForm
+from forms import EditForm, LoginForm, PostForm, SearchForm
 from models import User, Post, ROLE_USER, ROLE_ADMIN
 
 
@@ -32,6 +32,7 @@ def before_request():
         g.user.last_seen = datetime.utcnow()
         db.session.add(g.user)
         db.session.commit()
+        g.search_form = SearchForm()
 
 
 @app.route('/login/', methods=['GET', 'POST'])
