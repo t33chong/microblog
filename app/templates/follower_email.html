@@ -4,6 +4,7 @@
     <tr valign="top">
         <td><img src="{{follower.avatar(50)}}"></td>
         <td>
+            <!-- _external forces URL to include domain instead of relative -->
             <a href="{{url_for('user', nickname=follower.nickname, _external=True)}}">{{follower.nickname}}</a><br />
             {{follower.about_me}}
         </td>
