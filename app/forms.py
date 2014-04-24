@@ -32,7 +32,7 @@ class EditForm(Form):
 
 
 class PostForm(Form):
-    post = TextField('post', validators=[Required()])
+    post = TextAreaField('post', validators=[Required()])
 
 
 class SearchForm(Form):
