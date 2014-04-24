@@ -30,7 +30,7 @@
         {% if g.user.is_authenticated() %}
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-left">
-            <li><a href="{{ url_for('user', nickname=g.user.nickname) }}">Your Profile</a></li>
+            <li><a href="{{ url_for('user', nickname=g.user.nickname) }}"><strong>{{g.user.nickname}}</strong></a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li>
@@ -53,7 +53,7 @@
       {% if messages %}
       <ul>
         {% for message in messages %}
-        <li>{{ message }}</li>
+        <li>{{message}}</li>
         {% endfor %}
       </ul>
       {% endif %}
