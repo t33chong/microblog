@@ -3,28 +3,37 @@
 
 {% block content %}
 <section>
-<table>
-    <tr valign="top">
-        <td><img src="{{user.avatar(128)}}"></td>
-        <td>
-            <h1>User: {{user.nickname}}</h1>
-            {% if user.about_me %}<p>{{user.about_me}}</p>{% endif %}
-            {% if user.last_seen %}<p><i>Last seen on: {{user.last_seen}}</i></p>{% endif %}
-            <p>{{user.followers.count()}} followers |
-            {% if user.id == g.user.id %}
-            <a href="{{url_for('edit')}}">Edit your profile</a>
-            {% elif not g.user.is_following(user) %}
-            <a href="{{url_for('follow', nickname=user.nickname)}}">Follow</a>
-            {% else %}
-            <a href="{{url_for('unfollow', nickname=user.nickname)}}">Unfollow</a>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="media">
+          <img class="media-object pull-left" src="{{user.avatar(128)}}">
+          <div class="media-body">
+            <h1>{{user.nickname}}</h1>
+            {% if user.about_me %}
+            <p>{{user.about_me}}</p>
             {% endif %}
-            </p>
-        </td>
-    </tr>
-</table>
-{% for post in posts.items %}
-    {% include 'post.html' %}
-{% endfor %}
+          </div>
+        </div>
+        {% if user.last_seen %}
+        <p><i>Last seen on: {{user.last_seen}}</i></p>
+        {% endif %}
+        <p>{{user.followers.count()}} followers</p>
+        {% if user.id == g.user.id %}
+        <a href="{{url_for('edit')}}">Edit your profile</a>
+        {% elif not g.user.is_following(user) %}
+        <a href="{{url_for('follow', nickname=user.nickname)}}">Follow</a>
+        {% else %}
+        <a href="{{url_for('unfollow', nickname=user.nickname)}}">Unfollow</a>
+        {% endif %}
+      </div>
+      <div class="col-md-8">
+      {% for post in posts.items %}
+          {% include 'post.html' %}
+      {% endfor %}
+      </div>
+    </div>
+  </div>
 </section>
 <footer>
   <div class="container-fluid">
