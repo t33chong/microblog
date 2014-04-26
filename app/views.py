@@ -165,9 +165,11 @@ def search():
 
 
 @app.route('/search_results/<query>/')
+@app.route('/search_results/<query>/<int:page>/')
 @login_required
-def search_results(query):
-    results = Post.query.whoosh_search(query, MAX_SEARCH_RESULTS).all()
+def search_results(query, page=1):
+    results = Post.query.whoosh_search(query, MAX_SEARCH_RESULTS).paginate(
+        page, POSTS_PER_PAGE, False)
     return render_template('search_results.html', query=query, results=results)
 
 
