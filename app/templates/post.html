@@ -1,8 +1,12 @@
-<div class="container-fluid">
-  <table>
-      <tr valign="top">
-        <td><a href="{{url_for('user', nickname=post.author.nickname)}}"><img src="{{post.author.avatar(50)}}"></a></td>
-        <td><a href="{{url_for('user', nickname=post.author.nickname)}}"><span class="label label-default">{{post.author.nickname}}</span></a><br>{{post.body}}</td>
-      </tr>
-  </table>
+<div class="media">
+  <a class="pull-left" href="{{url_for('user', nickname=post.author.nickname)}}">
+    <img class="media-object" src="{{post.author.avatar(50)}}">
+  </a>
+  <div class="media-body">
+    <a href="{{url_for('user', nickname=post.author.nickname)}}">
+      <span class="label label-default">{{post.author.nickname}}</span>
+    </a>
+    <br>
+    {{post.body}}
+  </div>
 </div>
