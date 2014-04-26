@@ -20,11 +20,17 @@
         {% endif %}
         <p>{{user.followers.count()}} followers</p>
         {% if user.id == g.user.id %}
-        <a href="{{url_for('edit')}}">Edit your profile</a>
+        <a href="{{url_for('edit')}}">
+          <button type="button" class="btn btn-default">Edit your profile</button>
+        </a>
         {% elif not g.user.is_following(user) %}
-        <a href="{{url_for('follow', nickname=user.nickname)}}">Follow</a>
+        <a href="{{url_for('follow', nickname=user.nickname)}}">
+          <button type="button" class="btn btn-success">Follow</button>
+        </a>
         {% else %}
-        <a href="{{url_for('unfollow', nickname=user.nickname)}}">Unfollow</a>
+        <a href="{{url_for('unfollow', nickname=user.nickname)}}">
+          <button type="button" class="btn btn-danger">Unfollow</button>
+        </a>
         {% endif %}
       </div>
       <div class="col-md-8">
