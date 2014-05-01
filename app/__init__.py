@@ -7,7 +7,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 
 from config import basedir
 from config import ADMINS, MAIL_SERVER, MAIL_PORT, MAIL_USERNAME, MAIL_PASSWORD
-from momentjs import MomentJS
+from momentjs import momentjs
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -22,7 +22,7 @@ oid = OpenID(app, os.path.join(basedir, 'tmp'))
 
 mail = Mail(app)
 
-app.jinja_env.globals['MomentJS'] = MomentJS
+app.jinja_env.globals['momentjs'] = momentjs
 
 if not app.debug:
     import logging
