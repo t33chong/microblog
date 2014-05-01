@@ -16,7 +16,7 @@
           </div>
         </div>
         {% if user.last_seen %}
-        <p><i>Last seen on: {{MomentJS(user.last_seen).calendar()}}</i></p>
+        <p><i>Last seen on: {{momentjs(user.last_seen).calendar()}}</i></p>
         {% endif %}
         <p>{{user.followers.count()}} followers</p>
         {% if user.id == g.user.id %}
