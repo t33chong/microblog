@@ -4,8 +4,9 @@
   </a>
   <div class="media-body">
     <a href="{{url_for('user', nickname=post.author.nickname)}}">
-      <span class="label label-default">{{post.author.nickname}}</span> <small>{{MomentJS(post.timestamp).from_now()}}</small>
+      <span class="label label-default">{{post.author.nickname}}</span>
     </a>
+    <small>{{MomentJS(post.timestamp).from_now()}}</small>
     <br>
     {{post.body}}
   </div>
