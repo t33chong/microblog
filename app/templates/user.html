@@ -18,9 +18,6 @@
         {% if user.last_seen %}
         <p><i>Last seen on: {{momentjs(user.last_seen).calendar()}}</i></p>
         {% endif %}
-        <script>
-          document.write(moment("2012-12-31T23:55:13 Z").format('LLLL'));
-        </script>
         <p>{{user.followers.count()}} followers</p>
         {% if user.id == g.user.id %}
         <a href="{{url_for('edit')}}">
