@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from flask.ext.babel import Babel
 from flask.ext.login import LoginManager
 from flask.ext.mail import Mail
 from flask.ext.openid import OpenID
@@ -21,6 +22,8 @@ lm.login_view = 'login'
 oid = OpenID(app, os.path.join(basedir, 'tmp'))
 
 mail = Mail(app)
+
+babel = Babel(app)
 
 app.jinja_env.globals['MomentJS'] = MomentJS
 
