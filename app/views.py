@@ -1,8 +1,8 @@
 from datetime import datetime
 from flask import render_template, flash, redirect, session, url_for, request, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
-from app import app, db, lm, oid
-from config import POSTS_PER_PAGE, MAX_SEARCH_RESULTS
+from app import app, babel, db, lm, oid
+from config import LANGUAGES, MAX_SEARCH_RESULTS, POSTS_PER_PAGE
 from emails import follower_notification
 from forms import EditForm, LoginForm, PostForm, SearchForm
 from models import User, Post, ROLE_USER, ROLE_ADMIN
@@ -180,3 +180,8 @@ def not_found_error(error):
 def internal_error(error):
     db.session.rollback()
     return render_template('500.html'), 500
+
+
+@babel.localeselector
+def get_locale():
+    return request.accept_languages.best_match(LANGUAGES.keys())
