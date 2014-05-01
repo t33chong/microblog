@@ -1,7 +1,7 @@
 from jinja2 import Markup
 
 
-class MomentJS(object):
+class momentjs(object):
     def __init__(self, timestamp):
         self.timestamp = timestamp
 
