@@ -4,7 +4,9 @@
 {% block content %}
 <section>
   <div class="container-fluid">
-    <h2>Search results for "{{query}}":</h2>
+    {% autoescape false %}
+    <h2>{{_('Search results for "%(query)s":', query=query)}}</h2>
+    {% endautoescape %}
     {% for post in results %}
         {% include 'post.html' %}
     {% endfor %}
