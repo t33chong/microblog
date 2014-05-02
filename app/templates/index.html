@@ -18,9 +18,9 @@
         <form action="" role="form" method="post" name="post">
           <div class="form-group">
             {{form.hidden_tag()}}
-            {{form.post(class='form-control', rows=3, placeholder='Say something!', maxlength=140)}}
+            {{form.post(class='form-control', rows=3, placeholder=_('Say something!'), maxlength=140)}}
           </div>
-          <button type="submit" class="btn btn-default pull-right">Post!</button>
+          <button type="submit" class="btn btn-default pull-right">{{_('Post!')}}</button>
         </form>
       </div>
     </div>
@@ -30,14 +30,14 @@
   <div class="container-fluid">
     <ul class="pager">
       {% if posts.has_prev %}
-      <li><a href="{{url_for('index', page=posts.prev_num)}}">&larr; Newer</a></li>
+      <li><a href="{{url_for('index', page=posts.prev_num)}}">&larr; {{_('Newer')}}</a></li>
       {% else %}
-      <li class="disabled"><a href="#">&larr; Newer</a></li>
+      <li class="disabled"><a href="#">&larr; {{_('Newer')}}</a></li>
       {% endif %}
       {% if posts.has_next %}
-      <li><a href="{{url_for('index', page=posts.next_num)}}">Older &rarr;</a></li>
+      <li><a href="{{url_for('index', page=posts.next_num)}}">{{_('Older')}} &rarr;</a></li>
       {% else %}
-      <li class="disabled"><a href="#">Older &rarr;</a></li>
+      <li class="disabled"><a href="#">{{_('Older')}} &rarr;</a></li>
       {% endif %}
     </ul>
   </div>
