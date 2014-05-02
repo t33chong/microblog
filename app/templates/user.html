@@ -16,20 +16,20 @@
           </div>
         </div>
         {% if user.last_seen %}
-        <p><i>Last seen on: {{MomentJS(user.last_seen).calendar()}}</i></p>
+        <p><i>{{_('Last seen on:')}} {{MomentJS(user.last_seen).calendar()}}</i></p>
         {% endif %}
-        <p>{{user.followers.count()}} followers</p>
+        <p>{{user.followers.count()}} {{_('followers')}}</p>
         {% if user.id == g.user.id %}
         <a href="{{url_for('edit')}}">
-          <button type="button" class="btn btn-default">Edit your profile</button>
+          <button type="button" class="btn btn-default">{{_('Edit your profile')}}</button>
         </a>
         {% elif not g.user.is_following(user) %}
         <a href="{{url_for('follow', nickname=user.nickname)}}">
-          <button type="button" class="btn btn-success">Follow</button>
+          <button type="button" class="btn btn-success">{{_('Follow')}}</button>
         </a>
         {% else %}
         <a href="{{url_for('unfollow', nickname=user.nickname)}}">
-          <button type="button" class="btn btn-danger">Unfollow</button>
+          <button type="button" class="btn btn-danger">{{_('Unfollow')}}</button>
         </a>
         {% endif %}
       </div>
@@ -45,14 +45,14 @@
   <div class="container-fluid">
     <ul class="pager">
       {% if posts.has_prev %}
-      <li><a href="{{ url_for('user', nickname=user.nickname, page=posts.prev_num) }}">&larr; Newer</a></li>
+      <li><a href="{{ url_for('user', nickname=user.nickname, page=posts.prev_num) }}">&larr; {{_('Newer')}}</a></li>
       {% else %}
-      <li class="disabled"><a href="#">&larr; Newer</a></li>
+      <li class="disabled"><a href="#">&larr; {{_('Newer')}}</a></li>
       {% endif %}
       {% if posts.has_next %}
-      <li><a href="{{ url_for('user', nickname=user.nickname, page=posts.next_num) }}">Older &rarr;</a></li>
+      <li><a href="{{ url_for('user', nickname=user.nickname, page=posts.next_num) }}">{{_('Older')}} &rarr;</a></li>
       {% else %}
-      <li class="disabled"><a href="#">Older &rarr;</a></li>
+      <li class="disabled"><a href="#">{{_('Older')}} &rarr;</a></li>
       {% endif %}
     </ul>
   </div>
