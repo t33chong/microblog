@@ -38,7 +38,7 @@
               <form class="navbar-form" role="search" action="{{url_for('search')}}" method="post" name="search">
                 <div class="form-group">
                   {{g.search_form.hidden_tag()}}
-                  {{g.search_form.search(type='text', class='form-control', placeholder='Search')}}
+                  {{g.search_form.search(type='text', class='form-control', placeholder=_('Search'))}}
                 </div>
               </form>
             </li>
