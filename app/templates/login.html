@@ -13,7 +13,7 @@
           <div class="form-group">
             {{form.hidden_tag()}}
             <label for="openid">
-              Please enter your OpenID, or select one of the providers below
+              {{_('Please enter your OpenID, or select one of the providers below')}}
             </label>
             {{form.openid(class='form-control')}}
             {% for error in form.errors.openid %}
@@ -28,10 +28,10 @@
           </div>
           <div class="checkbox">
             <label>
-              {{form.remember_me}} Remember Me
+              {{form.remember_me}} {{_('Remember Me')}}
             </label>
           </div>
-          <button type="submit" class="btn btn-primary">Sign In</button>
+          <button type="submit" class="btn btn-primary">{{_('Sign In')}}</button>
         </form>
       </div>
       <div class="col-md-4">
