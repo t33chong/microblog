@@ -144,7 +144,7 @@ def unfollow(nickname):
         flash(gettext('User ' + nickname + ' not found.'))
         return redirect(url_for('index'))
     if user == g.user:
-        flash(gettext('You can't unfollow yourself!'))
+        flash(gettext("You can't unfollow yourself!"))
         return redirect(url_for('user', nickname=nickname))
     u = g.user.unfollow(user)
     if u is None:
