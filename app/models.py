@@ -1,3 +1,4 @@
+import re
 import flask.ext.whooshalchemy as whooshalchemy
 from hashlib import md5
 
@@ -38,6 +39,10 @@ class User(db.Model):
                 break
             version += 1
         return new_nickname
+
+    @staticmethod
+    def make_valid_nickname(nickname):
+        return re.sub('[^a-zA-Z0-9_\.]', '', nickname)
 
     def avatar(self, size):
         return (
