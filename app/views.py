@@ -123,7 +123,7 @@ def follow(nickname):
         flash(gettext('User ' + nickname + ' not found.'))
         return redirect(url_for('index'))
     if user == g.user:
-        flash(gettext('You can't follow yourself!'))
+        flash(gettext("You can't follow yourself!"))
         return redirect(url_for('user', nickname=nickname))
     u = g.user.follow(user)
     if u is None:
