@@ -186,4 +186,5 @@ def internal_error(error):
 
 @babel.localeselector
 def get_locale():
+    return "es"
     return request.accept_languages.best_match(LANGUAGES.keys())
